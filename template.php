@@ -30,11 +30,11 @@
     <table class="aaa">
       <tr>
         <td>
-            <span class="sp1">キバナシャクナゲ</span><br>
-            <span class="sp2">きばなしゃくなげ（黄花石楠花）</span>
-            <span class="sp2">ツツジ科</span>
-            <span class="sp2"><img src=./images/ki2.gif></span>
-            <span class="sp2">学名：Rhododendron aureum</span>
+            <span class="sp1"><?php echo $_POST['main_name']; ?></span><br>
+            <span class="sp2"><?php echo $_POST['sub_name']; ?></span>
+            <span class="sp2"><?php echo $_POST['kamoku']; ?></span>
+            <span class="sp2"><img src=./images/etc/<?php echo $_FILES["syubetu_img"]["name"]; ?>></span>
+            <span class="sp2">学名：<?php echo $_POST['gakumei']; ?></span>
         </td>
       </tr>
     </table>
@@ -44,26 +44,26 @@
       <tr>
         <td class="title">
           <!--  撮影日、花びらの枚数、花の色   -->
-          <span class="sp3">yyyy年mm月dd日</span>
-          <span class="sp3"><img src=./images/etc/5pc.gif></span>
-          <span class="sp3"><img src=./images/etc/2.gif></span>
+          <span class="sp3"><?php echo $_POST['hiduke']; ?></span>
+          <span class="sp3"><img src=./images/etc/<?php echo $_FILES["maisu_img"]["name"]; ?>></span>
+          <span class="sp3"><img src=./images/etc/<?php echo $_FILES["color_img"]["name"]; ?>></span>
         </td>
         <!--  撮影場所   -->
-        <td class="title">撮影場所</td>
+        <td class="title"><?php echo $_POST['basyo']; ?></td>
       </tr>
       <tr>
         <!--  花の説明、花の画像１、花の画像２   -->
         <td>
           <div class="setumei">
-          シャクナゲの仲間の中では、最も高い場所に生える。これはちょうどハイマツ帯に一致するので、ほとんどの場所で、背景に背の低い ハイマツ  が入る風景になるのが絵になる。
+          <?php echo $_POST['setumei']; ?>
           </div>
           <br>
-          <div><a class="fancybox" href="./images/kibanashakunageL.jpg" target="_blank"><img src="./images/kibanashakunageL.jpg" class="thumb"></a></div>
-          <div><a class="fancybox" href="./images/kibanashakunageL2.jpg" target="_blank"><img src="./images/kibanashakunageL2.jpg" class="thumb"></a></div>
+          <div><a class="fancybox" href="./images/<?php echo $_FILES["sub1_img"]["name"]; ?>" target="_blank"><img src="./images/<?php echo $_FILES["sub1_img"]["name"]; ?>" class="thumb"></a></div>
+          <div><a class="fancybox" href="./images/<?php echo $_FILES["sub2_img"]["name"]; ?>" target="_blank"><img src="./images/<?php echo $_FILES["sub2_img"]["name"]; ?>" class="thumb"></a></div>
         </td>
         <!--  メイン画像   -->
         <td>
-          <div ><a class="fancybox" href="./images/kibanashakunageL2.jpg" target="_blank"><img src="./images/kibanashakunageL2.jpg" class="mainphoto"></a></div>
+          <div ><a class="fancybox" href="./images/<?php echo $_FILES["main_img"]["name"]; ?>" target="_blank"><img src="./images/<?php echo $_FILES["main_img"]["name"]; ?>" class="mainphoto"></a></div>
         </td>
       </tr>
     </table>
