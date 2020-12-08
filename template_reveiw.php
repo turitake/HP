@@ -30,11 +30,12 @@
     <table class="aaa">
       <tr>
         <td>
-            <span class="sp1"><%main_name></span><br>
-            <span class="sp2"><%sub_name></span>
-            <span class="sp2"><%kamoku></span>
-            <span class="sp2"><img src=./images/etc/<%syubetu_img>></span>
-            <span class="sp2">学名：<%gakumei></span>
+            <span class="sp1"><?php echo $_GET['main_name']; ?></span><br>
+            <span class="sp2"><?php echo $_GET['sub_name']; ?></span>
+            <span class="sp2"><?php echo $_GET['kamoku']; ?></span>
+            <span class="sp2"><img src=./images/etc/<?php echo $_GET["syubetu_img"]; ?>></span>
+            <span class="sp2">学名：<?php echo $_GET['gakumei']; ?></span>
+            <!--<span class="sp2"><img src=./images/top/<?php echo $_GET["top_img"]; ?>></span>-->
         </td>
       </tr>
     </table>
@@ -44,33 +45,35 @@
       <tr>
         <td class="title">
           <!--  撮影日、花びらの枚数、花の色   -->
-          <span class="sp3"><%hiduke></span>
-          <span class="sp3"><img src=./images/etc/<%maisu_img>></span>
-          <span class="sp3"><img src=./images/etc/<%color_img>></span>
+          <span class="sp3"><?php echo $_GET['hiduke']; ?></span>
+          <span class="sp3"><img src=./images/etc/<?php echo $_GET["maisu_img"]; ?>></span>
+          <span class="sp3"><img src=./images/etc/<?php echo $_GET["color_img"]; ?>></span>
         </td>
         <!--  撮影場所   -->
-        <td class="title"><%basyo></td>
+        <td class="title"><?php echo $_GET['basyo']; ?></td>
       </tr>
       <tr>
         <!--  花の説明、花の画像１、花の画像２   -->
         <td>
           <div class="setumei">
-          <%setumei>
+          <?php echo $_GET['setumei']; ?>
           </div>
           <br>
-          <div><a class="fancybox" href="./images/<%sub1_img>" target="_blank"><img src="./images/<%sub1_img>" class="thumb"></a></div>
-          <div><a class="fancybox" href="./images/<%sub2_img>" target="_blank"><img src="./images/<%sub2_img>" class="thumb"></a></div>
+          <div><a class="fancybox" href="./images/<?php echo $_GET["sub1_img"]; ?>" target="_blank"><img src="./images/<?php echo $_GET["sub1_img"]; ?>" class="thumb"></a></div>
+          <div><a class="fancybox" href="./images/<?php echo $_GET["sub2_img"]; ?>" target="_blank"><img src="./images/<?php echo $_GET["sub2_img"]; ?>" class="thumb"></a></div>
         </td>
         <!--  メイン画像   -->
         <td>
-          <div ><a class="fancybox" href="./images/<%main_img>" target="_blank"><img src="./images/<%main_img>" class="mainphoto"></a></div>
+          <div ><a class="fancybox" href="./images/<?php echo $_GET["main_img"]; ?>" target="_blank"><img src="./images/<?php echo $_GET["main_img"]; ?>" class="mainphoto"></a></div>
         </td>
       </tr>
     </table>
 
     <table>
       <tr>
-        <td class="none"> <a href="http://www.ootk.net/shiki/" title='四季の山野草ＴＯＰ'><img src=./images/etc/top2.gif></a>
+        <td class="none">
+          <!--<a href="http://www.ootk.net/shiki/" title='四季の山野草ＴＯＰ'><img src=./images/etc/top2.gif></a>-->
+          <input type="button" onclick="history.back()" value="戻る">
         </td>
       </tr>
     </table>

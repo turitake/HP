@@ -21,7 +21,7 @@
 
   </head>
   <!--<form  action="create.php" method="post" enctype="multipart/form-data">-->
-  <form  action="template.php" method="post" enctype="multipart/form-data">
+  <form  action="create.php" method="post" enctype="multipart/form-data">
     <body>
       <div>
         <!--      トップ       -->
@@ -36,7 +36,8 @@
               <span class="sp2">ひらがな・漢字&nbsp;&nbsp;<input type="text" name="sub_name" style="width:300px"></span><br>
               <span class="sp2">科目&nbsp;&nbsp;<input type="text" name="kamoku" style="width:300px"></span><br>
               <span class="sp2">種別&nbsp;&nbsp;<input type="text" name="syubetu" style="width:30px">&nbsp;&nbsp;&nbsp;花びらイメージ&nbsp;&nbsp;</span><input type="file" name="syubetu_img" style="width:400px"><br>
-              <span class="sp2">学名&nbsp;&nbsp;<input type="text" name="gakumei" style="width:300px"></span>
+              <span class="sp2">学名&nbsp;&nbsp;<input type="text" name="gakumei" style="width:300px"></span><br>
+              <span class="sp2">花トップ画像&nbsp;&nbsp;<input type="file" name="top_img" style="width:400px"></span>
           </td>
         </tr>
       </table>
@@ -74,8 +75,9 @@
         <tr>
           <!--<td class="none"> <a href="http://www.ootk.net/shiki/" title='四季の山野草ＴＯＰ'><img src=./images/etc/top2.gif></a>-->
           <td class="none">
-            <input type="submit" value="作成">
 
+            <input type="submit" name="review" value="レビュー">
+            <input type="submit" name="add" value="作成">
           </td>
         </tr>
       </table>
