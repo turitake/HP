@@ -17,6 +17,8 @@
   $sub2_img = $_FILES["sub2_img"]["name"];
   $main_img = $_FILES["main_img"]["name"];
   $top_img = $_FILES["top_img"]["name"];
+  $katati = $_POST["katati"];
+  $kisetu = $_POST["kisetu"];
 
   if (isset($_POST["review"])==true)
   {
@@ -24,24 +26,63 @@
     header("location: template_reveiw.php?".$url);
     exit();
   }
-/*
-  if (isset($_POST["review"])==true)
+
+  if (isset($_POST["add"])==true)
   {
-*/
-    //DB接続
+    try {
+      //DB接続
+      $dsn = "mysql:dbname=flower;host=localhost;charset=utf8";
+      $user = "root";
+      $password = "";
+      $dbh = new PDO($dsn,$user,$password);
+      $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-    //ファイル採番番号取得SQL実行
+      //ファイル採番番号取得SQL実行
+      $sql = "select no from plant order by no desc limit 1";
+      $stmt = $dbh->prepare($sql);
+      $stmt->execute();
 
-    //htmlファイル名作成
+      $rec = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    //テンプレートファイル読み込み
+      //htmlファイル名作成
+      $fileno = $rec["no"] + 1;
+      $filename = $fileno . ".html";
 
-    //htmlファイル挿入データ作成
+      //テンプレートファイル読み込み
+      $template = "template.php";
+      $contents = file_get_contents( $template);
 
-    //htmlファイル作成＆書込み
+      //htmlファイル挿入データ作成
+      $contents = str_replace( "<%main_name>", htmlspecialchars($main_name), $contents);
+      $contents = str_replace( "<%sub_name>", htmlspecialchars($sub_name), $contents);
+      $contents = str_replace( "<%kamoku>", htmlspecialchars($kamoku), $contents);
+      $contents = str_replace( "<%syubetu_img>", htmlspecialchars($syubetu_img), $contents);
+      $contents = str_replace( "<%gakumei>", htmlspecialchars($gakumei), $contents);
+      $contents = str_replace( "<%hiduke>", htmlspecialchars($hiduke), $contents);
+      $contents = str_replace( "<%maisu_img>", htmlspecialchars($maisu_img), $contents);
+      $contents = str_replace( "<%color_img>", htmlspecialchars($color_img), $contents);
+      $contents = str_replace( "<%setumei>", htmlspecialchars($setumei), $contents);
+      $contents = str_replace( "<%sub1_img>", htmlspecialchars($sub1_img), $contents);
+      $contents = str_replace( "<%sub2_img>", htmlspecialchars($sub2_img), $contents);
+      $contents = str_replace( "<%main_img>", htmlspecialchars($main_img), $contents);
 
-    //DB登録SQL実行
 
-    //DB切断
+      //htmlファイル作成＆書込み
+      $handle = fopen( $filename, 'w');
+      fwrite( $handle, "test");
+      //fwrite( $handle, $contents);
+      fclose( $handle );
 
+      //DB登録SQL実行
+
+      //DB切断
+      $dbh = null;
+
+    } catch (\Exception $e) {
+      print "DB接続エラー";
+      exit();
+    }
+
+
+  }
 ?>
