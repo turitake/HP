@@ -46,7 +46,7 @@
 
       //htmlファイル名作成
       $fileno = $rec["no"] + 1;
-      $filename = $fileno . ".html";
+      $filename = "no_" . $fileno . ".html";
 
       //テンプレートファイル読み込み
       $template = "template.php";
@@ -66,17 +66,42 @@
       $contents = str_replace( "<%sub2_img>", htmlspecialchars($sub2_img), $contents);
       $contents = str_replace( "<%main_img>", htmlspecialchars($main_img), $contents);
 
-
       //htmlファイル作成＆書込み
       $handle = fopen( $filename, 'w');
-      fwrite( $handle, "test");
-      //fwrite( $handle, $contents);
+      //fwrite( $handle, "test");
+      fwrite( $handle, $contents);
       fclose( $handle );
 
+      //詳細ファイル移動
+      rename($filename,"details/" . $filename);
+
+      //挿入日付取得
+      $date = new DateTime();
+      $date = $date->modify("+8 hour");
+      $date = $date->format("Y-m-d H:i:s");
+      //$date = date("Y-m-d",$date);
+
       //DB登録SQL実行
+      $sql2 = "INSERT INTO plant (main_name,sub_name,gakumei,kamoku,syubetu,kisetu,color,maisu,katati,top_img,insertdate) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+      $stmt2 = $dbh->prepare($sql2);
+      $data[] = $main_name;
+      $data[] = $sub_name;
+      $data[] = $gakumei;
+      $data[] = $kamoku;
+      $data[] = $syubetu;
+      $data[] = $kisetu;
+      $data[] = $color;
+      $data[] = $maisu;
+      $data[] = $katati;
+      $data[] = $top_img;
+      $data[] = $date;
+      $stmt2->execute($data);
 
       //DB切断
       $dbh = null;
+
+      // メッセージ表示
+    	print $filename. "を生成し、書き込みを行いました。";
 
     } catch (\Exception $e) {
       print "DB接続エラー";

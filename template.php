@@ -2,7 +2,7 @@
 <html lang="jp">
   <head>
     <meta charset="utf-8">
-    <title>花の名前</title>
+    <title>花の名前(<%sub_name>)</title>
     <meta name="description" content="花の名前、植物、図鑑、植物図鑑">
     <link rel="stylesheet" href="./css/style.css">
 
