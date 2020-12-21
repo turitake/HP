@@ -1,6 +1,6 @@
 <?php
   //変数宣言・代入
-  $main_name = $_POST{"main_name"};
+  $main_name = $_POST["main_name"];
   $sub_name = $_POST["sub_name"];
   $kamoku = $_POST["kamoku"];
   $syubetu = $_POST["syubetu"];
@@ -19,6 +19,7 @@
   $top_img = $_FILES["top_img"]["name"];
   $katati = $_POST["katati"];
   $kisetu = $_POST["kisetu"];
+  $betumei = $_POST["betumei"];
 
   if (isset($_POST["review"])==true)
   {
@@ -55,6 +56,7 @@
       //htmlファイル挿入データ作成
       $contents = str_replace( "<%main_name>", htmlspecialchars($main_name), $contents);
       $contents = str_replace( "<%sub_name>", htmlspecialchars($sub_name), $contents);
+      $contents = str_replace( "<%betumei>", htmlspecialchars($betumei), $contents);
       $contents = str_replace( "<%kamoku>", htmlspecialchars($kamoku), $contents);
       $contents = str_replace( "<%syubetu_img>", htmlspecialchars($syubetu_img), $contents);
       $contents = str_replace( "<%gakumei>", htmlspecialchars($gakumei), $contents);
@@ -62,6 +64,7 @@
       $contents = str_replace( "<%maisu_img>", htmlspecialchars($maisu_img), $contents);
       $contents = str_replace( "<%color_img>", htmlspecialchars($color_img), $contents);
       $contents = str_replace( "<%setumei>", htmlspecialchars($setumei), $contents);
+      $contents = str_replace( "<%basyo>", htmlspecialchars($basyo), $contents);
       $contents = str_replace( "<%sub1_img>", htmlspecialchars($sub1_img), $contents);
       $contents = str_replace( "<%sub2_img>", htmlspecialchars($sub2_img), $contents);
       $contents = str_replace( "<%main_img>", htmlspecialchars($main_img), $contents);
@@ -82,10 +85,11 @@
       //$date = date("Y-m-d",$date);
 
       //DB登録SQL実行
-      $sql2 = "INSERT INTO plant (main_name,sub_name,gakumei,kamoku,syubetu,kisetu,color,maisu,katati,top_img,insertdate) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+      $sql2 = "INSERT INTO plant (main_name,sub_name,betumei,gakumei,kamoku,syubetu,kisetu,color,maisu,katati,top_img,insertdate,updatedate) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
       $stmt2 = $dbh->prepare($sql2);
       $data[] = $main_name;
       $data[] = $sub_name;
+      $date[] = $betumei;
       $data[] = $gakumei;
       $data[] = $kamoku;
       $data[] = $syubetu;
@@ -94,6 +98,7 @@
       $data[] = $maisu;
       $data[] = $katati;
       $data[] = $top_img;
+      $data[] = $date;
       $data[] = $date;
       $stmt2->execute($data);
 
