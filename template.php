@@ -34,7 +34,7 @@
             <span class="sp2"><%sub_name></span>
             <span class="sp2"><%kamoku></span>
             <span class="sp2"><img src=../images/etc/<%syubetu_img>></span>
-            <span class="sp2">学名：<%gakumei></span>
+            <span class="sp2">学名：<%gakumei></span><br>
             <span class="sp4">別名・別読み：<%betumei></span>
         </td>
       </tr>
@@ -59,12 +59,12 @@
           <%setumei>
           </div>
           <br>
-          <div><a class="fancybox" href="../images/L_1/<%sub1_img>" target="_blank"><img src="../images/L_1/<%sub1_img>" class="thumb"></a></div>
-          <div><a class="fancybox" href="../images/L_2/<%sub2_img>" target="_blank"><img src="../images/L_2/<%sub2_img>" class="thumb"></a></div>
+          <div><a class="fancybox" href="../images/sub1/<%sub1_img>" target="_blank"><img src="../images/sub1/<%sub1_img>" class="thumb"></a></div>
+          <div><a class="fancybox" href="../images/sub2/<%sub2_img>" target="_blank"><img src="../images/sub2/<%sub2_img>" class="thumb"></a></div>
         </td>
         <!--  メイン画像   -->
         <td>
-          <div ><a class="fancybox" href="../images/R/<%main_img>" target="_blank"><img src="../images/R/<%main_img>" class="mainphoto"></a></div>
+          <div ><a class="fancybox" href="../images/main/<%main_img>" target="_blank"><img src="../images/main/<%main_img>" class="mainphoto"></a></div>
         </td>
       </tr>
     </table>
