@@ -34,7 +34,8 @@
             <span class="sp2"><?php echo $_GET['sub_name']; ?></span>
             <span class="sp2"><?php echo $_GET['kamoku']; ?></span>
             <span class="sp2"><img src=./images/etc/<?php echo $_GET["syubetu_img"]; ?>></span>
-            <span class="sp2">学名：<?php echo $_GET['gakumei']; ?></span>
+            <span class="sp2">学名：<?php echo $_GET['gakumei']; ?></span><br>
+            <span class="sp4">別名・別読み：<?php echo $_GET["betumei"]; ?></span>
             <!--<span class="sp2"><img src=./images/top/<?php echo $_GET["top_img"]; ?>></span>-->
         </td>
       </tr>
@@ -59,12 +60,12 @@
           <?php echo $_GET['setumei']; ?>
           </div>
           <br>
-          <div><a class="fancybox" href="./images/L_1/<?php echo $_GET["sub1_img"]; ?>" target="_blank"><img src="./images/L_2<?php echo $_GET["sub1_img"]; ?>" class="thumb"></a></div>
-          <div><a class="fancybox" href="./images/L_2/<?php echo $_GET["sub2_img"]; ?>" target="_blank"><img src="./images/L_2/<?php echo $_GET["sub2_img"]; ?>" class="thumb"></a></div>
+          <div><a class="fancybox" href="./images/sub1/<?php echo $_GET["sub1_img"]; ?>" target="_blank"><img src="./images/sub1/<?php echo $_GET["sub1_img"]; ?>" class="thumb"></a></div>
+          <div><a class="fancybox" href="./images/sub2/<?php echo $_GET["sub2_img"]; ?>" target="_blank"><img src="./images/sub2/<?php echo $_GET["sub2_img"]; ?>" class="thumb"></a></div>
         </td>
         <!--  メイン画像   -->
         <td>
-          <div ><a class="fancybox" href="./images/R/<?php echo $_GET["main_img"]; ?>" target="_blank"><img src="./images/R/<?php echo $_GET["main_img"]; ?>" class="mainphoto"></a></div>
+          <div ><a class="fancybox" href="./images/main/<?php echo $_GET["main_img"]; ?>" target="_blank"><img src="./images/main/<?php echo $_GET["main_img"]; ?>" class="mainphoto"></a></div>
         </td>
       </tr>
     </table>
