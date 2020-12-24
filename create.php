@@ -21,10 +21,43 @@
   $kisetu = $_POST["kisetu"];
   $betumei = $_POST["betumei"];
 
+  //画像イメージパス定義
+  $top_path = "./images/top/" . $top_img;
+  $main_path = "./images/main/" . $main_img;
+  $sub1_path = "./images/sub1/" . $sub1_img;
+  $sub2_path = "./images/sub2/" . $sub2_img;
+
+
   if (isset($_POST["review"])==true)
   {
-    $url = "main_name=$main_name&sub_name=$sub_name&kamoku=$kamoku&syubetu=$syubetu&maisu_img=$maisu_img&gakumei=$gakumei&hiduke=$hiduke&maisu=$maisu&syubetu_img=$syubetu_img&color=$color&color_img=$color_img&basyo=$basyo&setumei=$setumei&sub1_img=$sub1_img&sub2_img=$sub2_img&main_img=$main_img";
+    $url = "main_name=$main_name&sub_name=$sub_name&kamoku=$kamoku&syubetu=$syubetu&maisu_img=$maisu_img&gakumei=$gakumei&hiduke=$hiduke&maisu=$maisu&syubetu_img=$syubetu_img&color=$color&color_img=$color_img&basyo=$basyo&setumei=$setumei&sub1_img=$sub1_img&sub2_img=$sub2_img&main_img=$main_img&betumei=$betumei";
     header("location: template_reveiw.php?".$url);
+
+    //画像データアップロード
+    if (move_uploaded_file($_FILES["top_img"]["tmp_name"],$top_path)) {
+      print("TOP画像アップロード完了<br>");
+    } else {
+      print("TOP画像アップロード失敗<br>");
+    }
+
+    if (move_uploaded_file($_FILES["main_img"]["tmp_name"],$main_path)) {
+      print("main画像アップロード完了<br>");
+    } else {
+      print("main画像アップロード失敗<br>");
+    }
+
+    if (move_uploaded_file($_FILES["sub1_img"]["tmp_name"],$sub1_path)) {
+      print("sub1画像アップロード完了<br>");
+    } else {
+      print("sub1画像アップロード失敗<br>");
+    }
+
+    if (move_uploaded_file($_FILES["sub2_img"]["tmp_name"],$sub2_path)) {
+      print("sub2画像アップロード完了<br>");
+    } else {
+      print("sub2画像アップロード失敗<br>");
+    }
+
     exit();
   }
 
@@ -47,7 +80,33 @@
 
       //htmlファイル名作成
       $fileno = $rec["no"] + 1;
+      //$fileno = 1;
       $filename = "no_" . $fileno . ".html";
+
+      //画像データアップロード
+      if (move_uploaded_file($_FILES["top_img"]["tmp_name"],$top_path)) {
+        print("TOP画像アップロード完了<br>");
+      } else {
+        print("TOP画像アップロード失敗<br>");
+      }
+
+      if (move_uploaded_file($_FILES["main_img"]["tmp_name"],$main_path)) {
+        print("main画像アップロード完了<br>");
+      } else {
+        print("main画像アップロード失敗<br>");
+      }
+
+      if (move_uploaded_file($_FILES["sub1_img"]["tmp_name"],$sub1_path)) {
+        print("sub1画像アップロード完了<br>");
+      } else {
+        print("sub1画像アップロード失敗<br>");
+      }
+
+      if (move_uploaded_file($_FILES["sub2_img"]["tmp_name"],$sub2_path)) {
+        print("sub2画像アップロード完了<br>");
+      } else {
+        print("sub2画像アップロード失敗<br>");
+      }
 
       //テンプレートファイル読み込み
       $template = "template.php";
@@ -75,6 +134,8 @@
       fwrite( $handle, $contents);
       fclose( $handle );
 
+
+
       //詳細ファイル移動
       rename($filename,"details/" . $filename);
 
@@ -89,7 +150,7 @@
       $stmt2 = $dbh->prepare($sql2);
       $data[] = $main_name;
       $data[] = $sub_name;
-      $date[] = $betumei;
+      $data[] = $betumei;
       $data[] = $gakumei;
       $data[] = $kamoku;
       $data[] = $syubetu;
