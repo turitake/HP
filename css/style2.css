@@ -1,0 +1,121 @@
+@charset "UTF-8";
+
+body {
+  background-color:#AAAAAA;
+}
+
+.wrapper {
+  width: 970px;
+  margin: 40px auto 40px;
+}
+
+.main {
+  display: block;
+  float: left;
+  width: 550px;
+}
+
+.side {
+  float: left;
+  width: 275px;
+}
+
+h1 {
+  font-size: 24px;/*文字のサイズ*/
+  color: black;/*文字色*/
+  padding: 5px 0;/*上下の余白*/
+  border-top: solid 2px black;/*上線*/
+  border-bottom: solid 2px black;/*下線*/
+  width: 300px;/*幅*/
+  text-align: center;/*文字の位置*/
+  margin: 0px auto;/*フォームの位置*/
+}
+
+img {
+  padding: 15px 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h2 {
+  text-align: center;
+  margin: 0px auto;/*フォームの位置*/
+  width: 150px;
+  padding: 5px 0;
+}
+
+.name {
+  margin: 0px auto;/*フォームの位置*/
+  border: solid 1px black;/*罫線*/
+  width: 400px;/*幅*/
+  list-style: none;/*丸を非表示*/
+}
+
+.kihon {
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px 0;
+}
+
+td.title {
+  width: 50%;
+}
+
+.kihon tr:nth-child(odd) td {
+  background-color: #EAF6FD;
+}
+.kihon tr:nth-child(even) td {
+  background-color: #EFEFEF;
+}
+
+/* div {
+  text-align: left;
+  width: 500px;
+  margin: 0px auto;
+} */
+
+.setumei {
+  width: 500px;
+  margin-bottom: 30px;
+  margin: 0px auto;
+}
+
+/* .location {
+  width: 500px;
+  border-bottom: solid 2px black;
+} 
+*/
+
+.side_location {
+  width: 350px;
+  border-bottom: solid 2px black;/*下線*/
+}
+
+.photo {
+  display: flex;
+  flex-direction: row;
+  padding-top: 5px;
+  padding-left: 5px;
+  width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.thumb {
+  width: 100px;
+  /* height: 80px; */
+}
+
+a {
+  padding: 5px;
+}
+
+.fancybox-close {
+  height: 25px;
+}
+
+.btn {
+  margin-left: 400px;
+}
