@@ -4,33 +4,28 @@
   $sub_name = $_POST["sub_name"];
   $kamoku = $_POST["kamoku"];
   $syubetu = $_POST["syubetu"];
-  $syubetu_img = $_FILES["syubetu_img"]["name"];
   $gakumei = $_POST["gakumei"];
-  $hiduke = $_POST["hiduke"];
   $maisu = $_POST["maisu"];
-  $maisu_img = $_FILES["maisu_img"]["name"];
   $color = $_POST["color"];
-  $color_img = $_FILES["color_img"]["name"];
   $basyo = $_POST["basyo"];
   $setumei = $_POST["setumei"];
   $sub1_img = $_FILES["sub1_img"]["name"];
   $sub2_img = $_FILES["sub2_img"]["name"];
-  $main_img = $_FILES["main_img"]["name"];
   $top_img = $_FILES["top_img"]["name"];
-  $katati = $_POST["katati"];
   $kisetu = $_POST["kisetu"];
-  $betumei = $_POST["betumei"];
+  $jiki = $_POST["jiki"];
+  $size = $_POST["size"];
+  $seisoku = $_POST["seisoku"];
 
   //画像イメージパス定義
   $top_path = "./images/top/" . $top_img;
-  $main_path = "./images/main/" . $main_img;
   $sub1_path = "./images/sub1/" . $sub1_img;
   $sub2_path = "./images/sub2/" . $sub2_img;
 
 
   if (isset($_POST["review"])==true)
   {
-    $url = "main_name=$main_name&sub_name=$sub_name&kamoku=$kamoku&syubetu=$syubetu&maisu_img=$maisu_img&gakumei=$gakumei&hiduke=$hiduke&maisu=$maisu&syubetu_img=$syubetu_img&color=$color&color_img=$color_img&basyo=$basyo&setumei=$setumei&sub1_img=$sub1_img&sub2_img=$sub2_img&main_img=$main_img&betumei=$betumei";
+    $url = "main_name=$main_name&sub_name=$sub_name&kamoku=$kamoku&syubetu=$syubetu&gakumei=$gakumei&&maisu=$maisu&color=$color&basyo=$basyo&setumei=$setumei&sub1_img=$sub1_img&sub2_img=$sub2_img&top_img=$top_img&jiki=$jiki&size=$size&seisoku=$seisoku";
     header("location: template_reveiw.php?".$url);
 
     //画像データアップロード
@@ -38,12 +33,6 @@
       print("TOP画像アップロード完了<br>");
     } else {
       print("TOP画像アップロード失敗<br>");
-    }
-
-    if (move_uploaded_file($_FILES["main_img"]["tmp_name"],$main_path)) {
-      print("main画像アップロード完了<br>");
-    } else {
-      print("main画像アップロード失敗<br>");
     }
 
     if (move_uploaded_file($_FILES["sub1_img"]["tmp_name"],$sub1_path)) {
@@ -90,12 +79,6 @@
         print("TOP画像アップロード失敗<br>");
       }
 
-      if (move_uploaded_file($_FILES["main_img"]["tmp_name"],$main_path)) {
-        print("main画像アップロード完了<br>");
-      } else {
-        print("main画像アップロード失敗<br>");
-      }
-
       if (move_uploaded_file($_FILES["sub1_img"]["tmp_name"],$sub1_path)) {
         print("sub1画像アップロード完了<br>");
       } else {
@@ -115,18 +98,18 @@
       //htmlファイル挿入データ作成
       $contents = str_replace( "<%main_name>", htmlspecialchars($main_name), $contents);
       $contents = str_replace( "<%sub_name>", htmlspecialchars($sub_name), $contents);
-      $contents = str_replace( "<%betumei>", htmlspecialchars($betumei), $contents);
       $contents = str_replace( "<%kamoku>", htmlspecialchars($kamoku), $contents);
-      $contents = str_replace( "<%syubetu_img>", htmlspecialchars($syubetu_img), $contents);
       $contents = str_replace( "<%gakumei>", htmlspecialchars($gakumei), $contents);
-      $contents = str_replace( "<%hiduke>", htmlspecialchars($hiduke), $contents);
-      $contents = str_replace( "<%maisu_img>", htmlspecialchars($maisu_img), $contents);
-      $contents = str_replace( "<%color_img>", htmlspecialchars($color_img), $contents);
+      $contents = str_replace( "<%color>", htmlspecialchars($color), $contents);
       $contents = str_replace( "<%setumei>", htmlspecialchars($setumei), $contents);
       $contents = str_replace( "<%basyo>", htmlspecialchars($basyo), $contents);
       $contents = str_replace( "<%sub1_img>", htmlspecialchars($sub1_img), $contents);
       $contents = str_replace( "<%sub2_img>", htmlspecialchars($sub2_img), $contents);
-      $contents = str_replace( "<%main_img>", htmlspecialchars($main_img), $contents);
+      $contents = str_replace( "<%top_img>", htmlspecialchars($top_img), $contents);
+      $contents = str_replace( "<%jiki>", htmlspecialchars($jiki), $contents);
+      $contents = str_replace( "<%seisoku>", htmlspecialchars($seisoku), $contents);
+      $contents = str_replace( "<%size>", htmlspecialchars($size), $contents);
+      $contents = str_replace( "<%maisu>", htmlspecialchars($maisu), $contents);
 
       //htmlファイル作成＆書込み
       $handle = fopen( $filename, 'w');
@@ -134,10 +117,8 @@
       fwrite( $handle, $contents);
       fclose( $handle );
 
-
-
       //詳細ファイル移動
-      rename($filename,"details/" . $filename);
+      rename($filename,"wiki/" . $filename);
 
       //挿入日付取得
       $date = new DateTime();
@@ -145,29 +126,35 @@
       $date = $date->format("Y-m-d H:i:s");
       //$date = date("Y-m-d",$date);
 
-      //DB登録SQL実行
-      $sql2 = "INSERT INTO plant (main_name,sub_name,betumei,gakumei,kamoku,syubetu,kisetu,color,maisu,katati,top_img,insertdate,updatedate) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+      //テーブル[plant]登録SQL実行
+      $sql2 = "INSERT INTO plant (main_name,sub_name,gakumei,kamoku,syubetu,kisetu,color,maisu,top_img,insertdate,updatedate) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
       $stmt2 = $dbh->prepare($sql2);
       $data[] = $main_name;
       $data[] = $sub_name;
-      $data[] = $betumei;
       $data[] = $gakumei;
       $data[] = $kamoku;
       $data[] = $syubetu;
       $data[] = $kisetu;
       $data[] = $color;
       $data[] = $maisu;
-      $data[] = $katati;
       $data[] = $top_img;
       $data[] = $date;
       $data[] = $date;
       $stmt2->execute($data);
 
+      //テーブル[place]登録SQL実行
+      $sql3 = "INSERT INTO place(no,basyo) VALUES (?,?)";
+      $stmt3 = $dbh->prepare($sql3);
+      $prm[] = $fileno;
+      $prm[] = $basyo;
+      $stmt3->execute($prm);
+
       //DB切断
       $dbh = null;
 
       // メッセージ表示
-    	print $filename. "を生成し、書き込みを行いました。";
+      print $filename. "を生成し、書き込みを行いました。";
+     
 
     } catch (\Exception $e) {
       print "DB接続エラー";
@@ -177,3 +164,4 @@
 
   }
 ?>
+ <button onclick="location.href='http://localhost/shiki/create.html'">続けて作成</button>
