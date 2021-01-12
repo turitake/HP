@@ -119,3 +119,12 @@ a {
 .btn {
   margin-left: 400px;
 }
+
+img {
+  -webkit-touch-callout:none;
+  -webkit-user-select:none;
+  -moz-touch-callout:none;
+  -moz-user-select:none;
+  user-select:none;
+  pointer-events: none;
+}

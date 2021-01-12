@@ -16,6 +16,7 @@
   $jiki = $_POST["jiki"];
   $size = $_POST["size"];
   $seisoku = $_POST["seisoku"];
+  $katati = $_POST["katati"];
 
   //画像イメージパス定義
   $top_path = "./images/top/" . $top_img;
@@ -126,16 +127,26 @@
       $date = $date->format("Y-m-d H:i:s");
       //$date = date("Y-m-d",$date);
 
+      //検索用文字作成
+      //半角カタカナに変換
+      $hankakuKatakana = mb_convert_kana($main_name, "k");
+      //濁点、半濁点を痴漢
+      $hankakuKatakana = mb_ereg_replace("ﾞ|ﾟ","",$hankakuKatakana);
+      // 半角カタカナを全角ひらがなに変換する
+      $zenkakuHiragana = mb_convert_kana($hankakuKatakana, "H");
+
       //テーブル[plant]登録SQL実行
-      $sql2 = "INSERT INTO plant (main_name,sub_name,gakumei,kamoku,syubetu,kisetu,color,maisu,top_img,insertdate,updatedate) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+      $sql2 = "INSERT INTO plant (main_name,sub_name,search_name,gakumei,kamoku,syubetu,kisetu,color,katati,maisu,top_img,insertdate,updatedate) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
       $stmt2 = $dbh->prepare($sql2);
       $data[] = $main_name;
       $data[] = $sub_name;
+      $data[] = $zenkakuHiragana;
       $data[] = $gakumei;
       $data[] = $kamoku;
       $data[] = $syubetu;
       $data[] = $kisetu;
       $data[] = $color;
+      $data[] = $katati;
       $data[] = $maisu;
       $data[] = $top_img;
       $data[] = $date;
@@ -164,4 +175,6 @@
 
   }
 ?>
+<br>
  <button onclick="location.href='http://localhost/shiki/create.html'">続けて作成</button>
+ <button onclick="location.href='http://localhost/shiki/create_index.php'">index作成</button>
