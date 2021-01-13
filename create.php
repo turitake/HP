@@ -127,10 +127,10 @@
       $date = $date->format("Y-m-d H:i:s");
       //$date = date("Y-m-d",$date);
 
-      //検索用文字作成
+      /*************検索文字作成*************/
       //半角カタカナに変換
       $hankakuKatakana = mb_convert_kana($main_name, "k");
-      //濁点、半濁点を痴漢
+      //濁点、半濁点を削除
       $hankakuKatakana = mb_ereg_replace("ﾞ|ﾟ","",$hankakuKatakana);
       // 半角カタカナを全角ひらがなに変換する
       $zenkakuHiragana = mb_convert_kana($hankakuKatakana, "H");

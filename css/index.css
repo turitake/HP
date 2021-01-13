@@ -101,7 +101,7 @@ nav ul li a {
   width: 10%;
   letter-spacing: 1px;
   font-weight: bold;
-  font-size: 12px;
+  font-size: 14px;
 }
 .scroll-list .category {
   display: inline-block;
@@ -111,21 +111,21 @@ nav ul li a {
   color: #fff;
   text-align: center;
   letter-spacing: 1px;
-  font-size: 12px;
-  line-height: 12px;
+  font-size: 14px;
+  line-height: 14px;
 }
 .scroll-list .category.news {
-  background-color: #2c3c53;
+  background-color: #33cc99;
 }
 .scroll-list .title {
-  display: inline-block;
+  display: inline-table;
   width: 73%;
   padding-left: 15px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 12px;
-  line-height: 12px;
+  font-size: 14px;
+  line-height: 14px;
 }
 
 /******************検索部******************/
