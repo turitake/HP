@@ -115,6 +115,13 @@
     $password = "";
     $dbh = new PDO($dsn,$user,$password);
     $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+    //SQL実行
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute();
+
+    $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+
   } catch (\Throwable $th) {
     print "DB接続エラー";
     exit();
