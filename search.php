@@ -120,7 +120,7 @@
     $stmt = $dbh->prepare($sql);
     $stmt->execute();
 
-    
+    $rec = $stmt->fetch(PDO::FETCH_ASSOC);
 
   } catch (\Throwable $th) {
     print "DB接続エラー";
