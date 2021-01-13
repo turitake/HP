@@ -107,6 +107,18 @@
   //order句作成
   $sql = $sql ." order by main_name";
 
+  /*************DB接続*************/
+  try {
+    //DB接続
+    $dsn = "mysql:dbname=flower;host=localhost;charset=utf8";
+    $user = "root";
+    $password = "";
+    $dbh = new PDO($dsn,$user,$password);
+    $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+  } catch (\Throwable $th) {
+    print "DB接続エラー";
+    exit();
+  }
   print($sql);
 ?>
   </body>
