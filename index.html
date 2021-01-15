@@ -5,7 +5,7 @@
     <title>四季の花々</title>
     <!--ファビコン-->
     <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16.png">
-    <meta name="description" content="高山植物や身近に咲いている植物を名前・色・花びらの枚数・季節で検索できます。">
+    <meta name="description" content="身近に咲いている花や高山植物を名前・色・花びらの枚数・季節・形で検索できる植物図鑑サイトです。">
 
     <!--　デフォルトCSS　-->
     <link rel="stylesheet" href="./css/index.css">
@@ -25,13 +25,18 @@
         中々見ることができない高山植物や身近に咲いている園芸植物まで掲載しています。
       </div>
 
+      <!--　掲載数　-->
+      <div class="count">
+        掲載種：16
+      </div>
+
       <!--　ナビリンク部　-->
       <nav class="global-nav">
         <ul>
-          <li class="nav-item"><a href="#">トップ</a></li>
+          <li class="nav-item"><a href="">トップ</a></li>
           <li class="nav-item"><a href="#">検索方法</a></li>
           <li class="nav-item"><a href="#">ブログ</a></li>
-          <li class="nav-item"><a href="#">お問合せ</a></li>
+          <li class="nav-item last"><a href="#">お問合せ</a></li>
         </ul>
       </nav>
     </header>
@@ -57,7 +62,7 @@
     <div>
 
       <div class="search">
-        <form action="search.php" class="search_form" method="post">
+        <form action="search.php" class="search_form" method="get">
           <!--名前検索-->
           <span class="sp1">名前検索</span><input type="text" name="name" class="search_name">
           <!--季節-->
